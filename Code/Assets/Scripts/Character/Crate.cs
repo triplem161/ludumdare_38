@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Gravity : MonoBehaviour
+public class Crate : MonoBehaviour
 {
 	public Transform planet;
 	public int speed = 1;
 
-	void FixedUpdate()
+	void Start()
 	{
 		GetGravityDirection();
 	}

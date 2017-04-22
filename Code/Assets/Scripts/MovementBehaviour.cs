@@ -29,26 +29,29 @@ public class MovementBehaviour : MonoBehaviour
             rightSpeed *= m_parentDude.GetComponent<MovementBehaviour>().m_rightSpeed;
         }
 
-        if (m_parentDude == null)
-            return;
+        if (m_parentDude != null)
+		{
+			if (Input.GetKey(KeyCode.A))
+			{
+				m_angle += Time.deltaTime * m_speed * leftSpeed;
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            m_angle += Time.deltaTime * m_speed * leftSpeed;
-            if (m_angle > Mathf.PI * 2)
-            {
-                m_angle -= Mathf.PI * 2;
-            }
-        }
+			}
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            m_angle -= Time.deltaTime * m_speed * rightSpeed;
-            if (m_angle < 0)
-            {
-                m_angle += Mathf.PI * 2;
-            }
-        }
+			if (Input.GetKey(KeyCode.E))
+			{
+				m_angle -= Time.deltaTime * m_speed * rightSpeed;
+
+			}
+
+		}
+		if (m_angle > Mathf.PI * 2)
+		{
+			m_angle -= Mathf.PI * 2;
+		}
+		if (m_angle < 0)
+		{
+			m_angle += Mathf.PI * 2;
+		}
     }
 
     void OnCollisionEnter2D(Collision2D col)

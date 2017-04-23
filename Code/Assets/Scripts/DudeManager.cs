@@ -53,7 +53,7 @@ public class DudeManager : MonoBehaviour {
             if (p_index > m_selectedDude)
             {
                 currentDude.GetComponent<MovementBehaviour>().m_parentDude = null;
-                nextDude.GetComponent<MovementBehaviour>().m_parentDude = currentDude;
+                nextDude.GetComponent<MovementBehaviour>().m_parentDude = nextDude;
             }
             else if (p_index < m_selectedDude)
             {

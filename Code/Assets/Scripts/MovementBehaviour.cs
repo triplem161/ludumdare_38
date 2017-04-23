@@ -5,15 +5,15 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class MovementBehaviour : MonoBehaviour
 {
-
     public float m_leftSpeed = 1;
     public float m_rightSpeed = 1;
-
     public GameObject m_planet;
     public GameObject m_parentDude;
+	public GameObject m_childDude;
     public float m_radius;
     public float m_speed;
     public float m_angle;
+    public bool m_isCenter = false;
 
     void Update()
     {
@@ -51,6 +51,34 @@ public class MovementBehaviour : MonoBehaviour
 		{
 			m_angle += Mathf.PI * 2;
 		}
+
+        // If the child is link to the current dude OR
+        // If the child is the center dude
+        // We display the link
+        bool isChildCenter = (m_childDude != null && m_childDude.GetComponent<MovementBehaviour>().m_isCenter);
+        if (isLinkToChild() || isChildCenter)
+            showLink(true);
+        else
+            showLink(false);
+    }
+
+    public bool isLinkToDude(GameObject p_dude)
+    {
+        if (p_dude == null)
+            return false;
+
+        float dudeAngle = p_dude.GetComponent<MovementBehaviour>().m_angle;
+        return (dudeAngle > m_angle - 0.01 && dudeAngle < m_angle + 0.01);
+    }
+
+    public bool isLinkToChild()
+	{
+        return isLinkToDude(m_childDude);
+	}
+
+	public bool isLinkToParent()
+	{
+        return isLinkToDude(m_parentDude);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -69,5 +97,17 @@ public class MovementBehaviour : MonoBehaviour
     {
         m_leftSpeed = 1;
         m_rightSpeed = 1;
+    }
+
+    public void showLink(bool p_activate)
+    {
+        if (p_activate && m_childDude != null)
+        {
+            GetComponent<LineRenderer>().enabled = true;
+            GetComponent<LineRenderer>().SetPosition(0, transform.position);
+            GetComponent<LineRenderer>().SetPosition(1, m_childDude.transform.position);
+        }
+        else
+            GetComponent<LineRenderer>().enabled = false;
     }
 }

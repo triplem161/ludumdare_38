@@ -27,14 +27,15 @@ public class DudeManager : MonoBehaviour {
 
     void selectDude(int p_index)
     {
-        if (p_index < 0)
-            p_index += m_dudes.Count;
-        GameObject oldDude = m_dudes[m_selectedDude];
-        m_selectedDude = p_index % m_dudes.Count;
-        GameObject dude = m_dudes[m_selectedDude];
+        GameObject currentDude = m_dudes[m_selectedDude];
+        int nextDudeIndex = Mathf.Clamp(p_index, 0, m_dudes.Count - 1);
+        GameObject nextDude = m_dudes[nextDudeIndex];
 
-        oldDude.GetComponent<SpriteRenderer>().color = Color.white;
-        dude.GetComponent<SpriteRenderer>().color = Color.red;
-
+        if (currentDude.GetComponent<MovementBehaviour>().isLinkToDude(nextDude))
+        {
+            m_selectedDude = nextDudeIndex;
+            currentDude.GetComponent<SpriteRenderer>().color = Color.white;
+            nextDude.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 }

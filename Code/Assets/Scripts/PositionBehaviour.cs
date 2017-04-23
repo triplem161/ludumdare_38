@@ -12,9 +12,9 @@ public class PositionBehaviour : MonoBehaviour {
 	void Update()
     {
         transform.up = transform.position - m_planet.transform.position;
-        transform.position = m_planet.transform.position + m_radius * new Vector3(Mathf.Cos(m_angle), Mathf.Sin(m_angle), 0f);
+        transform.position = new Vector3(m_planet.transform.position.x, m_planet.transform.position.y, transform.position.z) + m_radius * new Vector3(Mathf.Cos(m_angle), Mathf.Sin(m_angle), 0f);
 
-		if (m_angle > Mathf.PI * 2)
+        if (m_angle > Mathf.PI * 2)
 		{
 			m_angle -= Mathf.PI * 2;
 		}

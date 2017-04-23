@@ -15,10 +15,16 @@ public class MovementBehaviour : MonoBehaviour
     public float m_speed;
     public float m_angle;
 
+    float z;
+
+    void Start()
+    {
+        z = transform.position.z;
+    }
+
     void Update()
     {
-
-        transform.position = m_planet.transform.position + m_radius * new Vector3(Mathf.Cos(m_angle), Mathf.Sin(m_angle), 0f);
+        transform.position = new Vector3(m_planet.transform.position.x, m_planet.transform.position.y, transform.position.z) + m_radius * new Vector3(Mathf.Cos(m_angle), Mathf.Sin(m_angle), 0f);
 
         float leftSpeed = m_leftSpeed;
         float rightSpeed = m_rightSpeed;

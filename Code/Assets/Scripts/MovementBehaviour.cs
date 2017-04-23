@@ -51,15 +51,6 @@ public class MovementBehaviour : MonoBehaviour
 		{
 			m_angle += Mathf.PI * 2;
 		}
-
-        // If the child is link to the current dude OR
-        // If the child is the center dude
-        // We display the link
-        bool isChildCenter = (m_childDude != null && m_childDude.GetComponent<MovementBehaviour>().m_isCenter);
-        if (isLinkToChild() || isChildCenter)
-            showLink(true);
-        else
-            showLink(false);
     }
 
     public bool isLinkToDude(GameObject p_dude)
@@ -68,7 +59,7 @@ public class MovementBehaviour : MonoBehaviour
             return false;
 
         float dudeAngle = p_dude.GetComponent<MovementBehaviour>().m_angle;
-        return (dudeAngle > m_angle - 0.01 && dudeAngle < m_angle + 0.01);
+        return (dudeAngle > m_angle - 0.05 && dudeAngle < m_angle + 0.05);
     }
 
     public bool isLinkToChild()

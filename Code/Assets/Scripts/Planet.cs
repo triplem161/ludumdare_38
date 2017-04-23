@@ -6,6 +6,7 @@ public class Planet : MonoBehaviour
 {
 	public float tolerance = 1;
 	public bool allAreAligned = false;
+
 	void Update()
 	{
 		float angle = GetComponentInChildren<MovementBehaviour>().m_angle;

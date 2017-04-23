@@ -30,19 +30,20 @@ public class MovementBehaviour : MonoBehaviour
 
         if (m_parentDude != null)
 		{
-			if (Input.GetKey(KeyCode.A))
-			{
-				m_angle += Time.deltaTime * m_speed * leftSpeed;
+            if (FindObjectOfType<DudeManager>().getSelectedDude() == this || FindObjectOfType<DudeManager>().getSelectedDude() == m_parentDude)
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    m_angle += Time.deltaTime * m_speed * leftSpeed;
+                }
 
-			}
-
-			if (Input.GetKey(KeyCode.E))
-			{
-				m_angle -= Time.deltaTime * m_speed * rightSpeed;
-
-			}
-
+                if (Input.GetKey(KeyCode.E))
+                {
+                    m_angle -= Time.deltaTime * m_speed * rightSpeed;
+                }
+            }
 		}
+
 		if (m_angle > Mathf.PI * 2)
 		{
 			m_angle -= Mathf.PI * 2;

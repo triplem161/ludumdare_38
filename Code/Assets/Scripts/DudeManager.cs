@@ -66,4 +66,9 @@ public class DudeManager : MonoBehaviour {
             m_selectedDude = nextDudeIndex;
         }
     }
+
+    public GameObject getSelectedDude()
+    {
+        return m_dudes[m_selectedDude];
+    }
 }

@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour
 {
-	public Planet[] planets;
-	private int currentPlanet = -1;
+	public DudeManager[] planets;
+	private int currentPlanet = 0;
 
 	void Start()
 	{
-		//ChangePlanet(0);
+		planets[0].gameObject.SetActive(true);
 	}
 
-
-
-	void ChangePlanet(int newPlanet)
+	void Update()
 	{
-		//planets[currentPlanet].enabled = false;
-		planets[newPlanet].enabled = true;
+		if (planets[currentPlanet].checkDudesAlignement())
+		{
+			ChangePlanet();
+		}
+	}
 
-		currentPlanet = newPlanet;
+	void ChangePlanet()
+	{
+		planets[currentPlanet].gameObject.SetActive(false);
+		currentPlanet++;
+		planets[currentPlanet].gameObject.SetActive(true);
 	}
 }

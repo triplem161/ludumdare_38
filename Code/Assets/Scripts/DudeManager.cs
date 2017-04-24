@@ -40,9 +40,6 @@ public class DudeManager : MonoBehaviour {
         }
 
         m_dudes.Last().GetComponent<MovementBehaviour>().showLink(true);
-
-		if(areDudesAligned(m_dudes[0].GetComponent<MovementBehaviour>()))
-			Debug.Log("Dudes are aligned");
     }
 
     void selectDude(int p_index)
@@ -75,18 +72,21 @@ public class DudeManager : MonoBehaviour {
         return m_dudes[m_selectedDude];
     }
 
+	public bool checkDudesAlignement()
+	{
+		return areDudesAligned(m_dudes[0].GetComponent<MovementBehaviour>());
+	}
+
 	public bool areDudesAligned(MovementBehaviour dude)
 	{
+		if (dude.m_childDude.GetComponent<MovementBehaviour>().m_isCenter)
+			return true;
+
 		if(dude.isLinkToChild())
 		{
-			if(!dude.m_childDude.GetComponent<MovementBehaviour>().m_isCenter)
-				areDudesAligned(dude.m_childDude.GetComponent<MovementBehaviour>());
-		}
-		else
-		{
-			return false;
+			return areDudesAligned(dude.m_childDude.GetComponent<MovementBehaviour>());
 		}
 
-		return true;
+		return false;
 	}
 }

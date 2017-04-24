@@ -16,11 +16,11 @@ public class DudeManager : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             selectDude(m_selectedDude + 1);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             selectDude(m_selectedDude - 1);
         }

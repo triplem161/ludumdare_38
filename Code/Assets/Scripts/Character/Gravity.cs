@@ -18,11 +18,11 @@ public class Gravity : MonoBehaviour
 		transform.up = planet.position - transform.position;
 		transform.position += transform.up * Time.deltaTime;
 
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			transform.position += -transform.right * Time.deltaTime * speed;
 		}
-		if (Input.GetKey(KeyCode.O))
+		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			transform.position += transform.right * Time.deltaTime * speed;
 		}

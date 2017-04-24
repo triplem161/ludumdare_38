@@ -32,12 +32,12 @@ public class MovementBehaviour : MonoBehaviour
 		{
             if (FindObjectOfType<DudeManager>().getSelectedDude() == this || FindObjectOfType<DudeManager>().getSelectedDude() == m_parentDude)
             {
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     m_angle += Time.deltaTime * m_speed * leftSpeed;
                 }
 
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
                     m_angle -= Time.deltaTime * m_speed * rightSpeed;
                 }
